@@ -15,9 +15,12 @@
                     </a>
                 </h1>
 
-                <div>
-                    {{$post->excerpt}}
-                </div>
+
+                {{-- fetch category names/properties--}}
+                <p>
+                <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
+                </p>
+
                 
             </article>
         @endforeach    
