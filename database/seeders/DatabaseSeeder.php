@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        User::truncate();
+        Category::truncate();
         // \App\Models\User::factory(10)->create();
         $user = User::factory(3)->create();
 
