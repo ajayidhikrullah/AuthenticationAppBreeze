@@ -12,8 +12,12 @@
             </div> --}}
             
         {{-- show each category names/properties/slug--}}
-            <p>
+            {{-- <p>
                 This was published by: <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
+            </p> --}}
+
+            <p>
+                This was published by: <a href="#">{{$post->user->name}}</a>
             </p>
 
             <div>

@@ -30,6 +30,6 @@ class Post /*1*/ extends Model //a POST~~~~~\
 
     //a post belongs to a user
     public function user(){
-        return $this->belongsToUser(User::class);
+        return $this->belongsTo(User::class);
     }
 }

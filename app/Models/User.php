@@ -45,6 +45,6 @@ class User extends Authenticatable
     //if u av an existing user, and u want to grab there post
     //a user can have many post tho
     public function posts(){ //$user->post
-        return $this->hasMany(Post::class)
+        return $this->hasMany(Post::class);
     }
 }
