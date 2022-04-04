@@ -27,4 +27,9 @@ class Post /*1*/ extends Model //a POST~~~~~\
 
         return $this->belongsTo/*2*/(Category::class); //associated to Category
     }
+
+    //a post belongs to a user
+    public function user(){
+        return $this->belongsToUser(User::class);
+    }
 }
