@@ -38,7 +38,7 @@ Route::get('/', function(){
     
     return view('partials.posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
-        'posts' => Post::with('category')->get()
+        'posts' => Post::latest()->with('category')->get()
     ]);
 });
 

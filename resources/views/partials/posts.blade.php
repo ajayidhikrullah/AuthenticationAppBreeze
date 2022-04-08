@@ -17,8 +17,12 @@
 
 
                 {{-- fetch category names/properties--}}
-                <p>
+                {{-- <p>
                 <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
+                </p> --}}
+
+                <p>
+                    This was published by: <a href="#">{{$post->author->name}}</a> in <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
                 </p>
 
                 

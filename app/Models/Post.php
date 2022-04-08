@@ -29,7 +29,7 @@ class Post /*1*/ extends Model //a POST~~~~~\
     }
 
     //a post belongs to a user
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function author(){ //previously used user_id
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

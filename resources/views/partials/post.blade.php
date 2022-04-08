@@ -17,11 +17,11 @@
             </p> --}}
 
             <p>
-                This was published by: <a href="#">{{$post->user->name}}</a>
+                This was published by: <a href="#">{{$post->author->name}}</a>
             </p>
 
             <div>
-                {{$post->excerpt}}
+                {{$post->body}}
             </div>
         </article>
 
