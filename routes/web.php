@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Route::get('/', function(){
     
     return view('partials.posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
-        'posts' => Post::latest()->with('category')->get()
+        'posts' => Post::latest()->with('category', 'author')->get()
     ]);
 });
 
@@ -53,16 +54,21 @@ Route::get('posts/{post:slug}', function (Post $post){
     ]);
 });
 
-
-
 //**********************************************close POST ROUTE 
 
 Route::get('categories/{category:slug}', function (Category $category){
         return view('partials.posts', [
             'posts'=>$category->post
         ]);
-
     });
+
+// get authors cateroy post only
+Route::get('authors/{author:name}', function (User $author){
+    // dd($author);
+    return view('partials.posts', [
+        'posts'=>$author->posts
+    ]);
+});
 
 
 
