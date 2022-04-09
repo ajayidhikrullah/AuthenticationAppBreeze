@@ -1,10 +1,6 @@
-@extends('partials.layout')
-
-    @section('content')
+<x-layout>
     {{-- @foreach ($posts as $post) --}}
-        <article>
-
-            
+        <article>         
             <h1>{{$post->title}}</h1>
             {{-- <div>
                 {{$post->body}} <hr>
@@ -28,6 +24,4 @@
 
         <a href="/">Go Back please</a>
     {{-- @endforeach --}}
-
-
-    @endsection
+</x-layout>

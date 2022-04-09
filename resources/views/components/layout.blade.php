@@ -7,7 +7,7 @@
     <title>My BLOG</title>
 </head>
 <body>
-    {{ $content }}
+    {{ $slot }}
 </body>
 </html>
 

@@ -37,7 +37,7 @@ Route::get('/', function(){
     // $posts = Post::findorfail();
     // return view('partials.posts');
     
-    return view('partials.posts', [
+    return view('posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
         // 'posts' => Post::latest()->with('category', 'author')->get()
         'posts' => Post::latest()->get()
@@ -50,7 +50,7 @@ Route::get('posts/{post:slug}', function (Post $post){
     //     'post' => Post::findOrFail($slug)
     // ]);
 
-    return view('partials.post', [
+    return view('post', [
         'post' => $post
     ]);
 });
@@ -58,7 +58,7 @@ Route::get('posts/{post:slug}', function (Post $post){
 //**********************************************close POST ROUTE 
 
 Route::get('categories/{category:slug}', function (Category $category){
-        return view('partials.posts', [
+        return view('posts', [
             // 'posts'=>$category->post->load(['category', 'author'])
             'posts'=>$category->post,
             // dd($category)
@@ -68,7 +68,7 @@ Route::get('categories/{category:slug}', function (Category $category){
 // get authors cateroy post only
 Route::get('authors/{author:username}', function (User $author){//fetched post by author username which User
     // dd($author->post);
-    return view('partials.posts', [
+    return view('posts', [
         'posts' => $author->posts
     ]);
 });
