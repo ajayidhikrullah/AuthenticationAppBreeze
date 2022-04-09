@@ -39,7 +39,8 @@ Route::get('/', function(){
     
     return view('partials.posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
-        'posts' => Post::latest()->with('category', 'author')->get()
+        // 'posts' => Post::latest()->with('category', 'author')->get()
+        'posts' => Post::latest()->get()
     ]);
 });
 
@@ -58,18 +59,19 @@ Route::get('posts/{post:slug}', function (Post $post){
 
 Route::get('categories/{category:slug}', function (Category $category){
         return view('partials.posts', [
-            'posts'=>$category->post
+            // 'posts'=>$category->post->load(['category', 'author'])
+            'posts'=>$category->post,
+            // dd($category)
         ]);
     });
 
 // get authors cateroy post only
-Route::get('authors/{author:name}', function (User $author){
-    // dd($author);
+Route::get('authors/{author:username}', function (User $author){//fetched post by author username which User
+    // dd($author->post);
     return view('partials.posts', [
-        'posts'=>$author->posts
+        'posts' => $author->posts
     ]);
 });
-
 
 
 

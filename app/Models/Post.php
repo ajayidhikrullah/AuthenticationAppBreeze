@@ -15,6 +15,9 @@ class Post /*1*/ extends Model //a POST~~~~~\
     // protected $fillable = ['title', 'body', 'category_id', 'slug', 'excerpt'];
     protected $guarded = []; //everything is fillable but except some fileds that is in guarded
 
+    //eager load from DB, to reduce the database query
+    // protected $with = ['category', 'author'];
+
     public function getRouteKeyName(){
         return 'slug';
     }
@@ -29,7 +32,7 @@ class Post /*1*/ extends Model //a POST~~~~~\
     }
 
     //a post belongs to a user
-    public function author(){ //previously used user_id
+    public function author(){ //previously used as user_id
         return $this->belongsTo(User::class, 'user_id');
     }
 }
