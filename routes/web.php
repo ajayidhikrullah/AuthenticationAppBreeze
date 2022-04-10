@@ -40,7 +40,8 @@ Route::get('/', function(){
     return view('posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
         // 'posts' => Post::latest()->with('category', 'author')->get()
-        'posts' => Post::latest()->get()
+        'posts' => Post::latest()->get(),
+        'categories' => Category::latest()->get()
     ]);
 });
 
