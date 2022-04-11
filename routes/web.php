@@ -62,6 +62,8 @@ Route::get('categories/{category:slug}', function (Category $category){
         return view('posts', [
             // 'posts'=>$category->post->load(['category', 'author'])
             'posts'=>$category->post,
+            'currentCategory' => $category, //shows current category in dropdown upon loading d page
+            'categories' => Category::all() //shows all categories wen click on d dropdown
             // dd($category)
         ]);
     });
@@ -70,7 +72,8 @@ Route::get('categories/{category:slug}', function (Category $category){
 Route::get('authors/{author:username}', function (User $author){//fetched post by author username which User
     // dd($author->post);
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
     ]);
 });
 
