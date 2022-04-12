@@ -32,7 +32,9 @@ Route::get('/', function(){
     $posts = Post::latest();
 
     if(request('search')){
-        $posts->where('title', 'like', '%' . request('search') . '%'); //SELECT * FROM posts WHERE title like '%Reprehenderit%';
+        $posts
+        ->where('title', 'like', '%' . request('search') . '%') //SELECT * FROM posts WHERE title like '%is whatever we search for%';
+        ->orWhere('body', 'like', '%' . request('search') . '%');
     }
 
 
