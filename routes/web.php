@@ -26,7 +26,16 @@ use App\Models\User;
 // dd(Post::find(2)->title);
 //route to home
 Route::get('/', function(){
-    
+    //check request from search
+    // var_dump(request('search'));exit();
+    /* SEARCH */
+    $posts = Post::latest();
+
+    if(request('search')){
+        $posts->where('title', 'like', '%' . request('search') . '%'); //SELECT * FROM posts WHERE title like '%Reprehenderit%';
+    }
+
+
     /*******
     check for logs
         \Illuminate\Support\facades\DB::listen(function ($query){
@@ -37,10 +46,10 @@ Route::get('/', function(){
     // $posts = Post::findorfail();
     // return view('partials.posts');
     
-    return view('posts', [
+       return view('posts', [
         // 'posts' => Post::all() //fetch post all data in DB tb
         // 'posts' => Post::latest()->with('category', 'author')->get()
-        'posts' => Post::latest()->get(),
+        'posts' => $posts->get(),
         'categories' => Category::latest()->get()
     ]);
 });
