@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
@@ -25,59 +26,21 @@ use App\Models\User;
 // dd (Post::all()->title);
 // dd(Post::find(2)->title);
 //route to home
-Route::get('/', function(){
-    //check request from search
-    // var_dump(request('search'));exit();
-    /* SEARCH */
-    $posts = Post::latest();
-
-    if(request('search')){
-        $posts
-        ->where('title', 'like', '%' . request('search') . '%') //SELECT * FROM posts WHERE title like '%is whatever we search for%';
-        ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
-
-
-    /*******
-    check for logs
-        \Illuminate\Support\facades\DB::listen(function ($query){
-            logger($query->sql, $query->bindings);
-        });
-    */
-
-    // $posts = Post::findorfail();
-    // return view('partials.posts');
-    
-       return view('posts', [
-        // 'posts' => Post::all() //fetch post all data in DB tb
-        // 'posts' => Post::latest()->with('category', 'author')->get()
-        'posts' => $posts->get(),
-        'categories' => Category::latest()->get()
-    ]);
-});
-
-// route by slug column name and not ID
-Route::get('posts/{post:slug}', function (Post $post){
-    // return view('partials.post', [
-    //     'post' => Post::findOrFail($slug)
-    // ]);
-
-    return view('post', [
-        'post' => $post
-    ]);
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
+//this route shows our POSTS, route by slug column name and not ID
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 //**********************************************close POST ROUTE 
 
-Route::get('categories/{category:slug}', function (Category $category){
-        return view('posts', [
+// Route::get('categories/{category:slug}', function (Category $category){
+//         return view('posts', [
             // 'posts'=>$category->post->load(['category', 'author'])
-            'posts'=>$category->post,
-            'currentCategory' => $category, //shows current category in dropdown upon loading d page
-            'categories' => Category::all() //shows all categories wen click on d dropdown
+            // 'posts'=>$category->post,
+            // 'currentCategory' => $category, //shows current category in dropdown upon loading d page
+            // 'categories' => Category::all() //shows all categories wen click on d dropdown
             // dd($category)
-        ]);
-    });
+        // ]);
+    // });
 
 // get authors cateroy post only
 Route::get('authors/{author:username}', function (User $author){//fetched post by author username which User

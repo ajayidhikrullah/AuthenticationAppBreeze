@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class Post /*1*/ extends Model //a POST~~~~~\
 {
     use HasFactory;
@@ -16,7 +17,27 @@ class Post /*1*/ extends Model //a POST~~~~~\
     protected $guarded = []; //everything is fillable but except some fileds that is in guarded
 
     //eager load from DB, to reduce the database query
-    // protected $with = ['category', 'author'];
+    protected $with = ['category', 'author'];
+
+    //SEARCH
+    public function scopeFilter($query, array $filters){
+
+        $query->when($filters['search'] ?? false, function($query, $search){
+            $query
+                ->where('title', 'like', '%' . $search . '%') //SELECT * FROM posts WHERE title like '%is whatever we search for%';
+                ->orWhere('body', 'like', '%' . $search . '%');    
+
+                        //search by categories
+            $query->when($filters['category'] ?? false, function($query, $category){
+                $query
+                    ->whereHas('category', function($query, $category){
+                        $query->where('slug', $category);
+                    });
+            });
+        });
+
+
+    }
 
     public function getRouteKeyName(){
         return 'slug';
