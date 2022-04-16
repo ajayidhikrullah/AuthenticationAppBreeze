@@ -22,21 +22,18 @@ class Post /*1*/ extends Model //a POST~~~~~\
     //SEARCH
     public function scopeFilter($query, array $filters){
 
-        $query->when($filters['search'] ?? false, function($query, $search){
+        $query->when($filters['search'] ?? false, function ($query, $search){
             $query
                 ->where('title', 'like', '%' . $search . '%') //SELECT * FROM posts WHERE title like '%is whatever we search for%';
                 ->orWhere('body', 'like', '%' . $search . '%');    
 
                         //search by categories
-            $query->when($filters['category'] ?? false, function($query, $category){
-                $query
-                    ->whereHas('category', function($query, $category){
+            $query->when($filters['category'] ?? false, function ($query, $category){
+                $query->whereHas('category', function ($query){
                         $query->where('slug', $category);
                     });
             });
         });
-
-
     }
 
     public function getRouteKeyName(){
