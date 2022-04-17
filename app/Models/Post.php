@@ -29,10 +29,20 @@ class Post /*1*/ extends Model //a POST~~~~~\
 
                         //search by categories
             $query->when($filters['category'] ?? false, function ($query, $category){
-                $query->whereHas('category', function ($query){
+                $query->whereHas('category', function ($query, $category){
                         $query->where('slug', $category);
                     });
             });
+
+            // $query->when($filters['category'] ?? false, function ($query, $category){
+            //     $query->whereExists(function ($query){
+            //         $query->from('categories')
+            //             ->whereColumn('categories.id', 'posts.category_id')
+            //             ->where('categories.slug', $category);
+            //         });
+            // });
+
+
         });
     }
 

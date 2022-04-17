@@ -11,6 +11,7 @@
                         <header>
                             <div class="space-x-2">
                                 {{-- <x-post-featured-card> --}}
+                                   
                                     <x-category-button :category="$post->category"/>
                                 {{-- <a href="/categories/{{$post->category->slug}}"
                                    class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
@@ -42,7 +43,7 @@
                                 <img src="/images/lary-avatar.svg" alt="Lary avatar">
                                 <div class="ml-3">
                                     <h5 class="font-bold">{{$post->author->name}}</h5>
-                                    <h6>Mascot at Laracasts</h6>
+                                    <h6>Admin signature</h6>
                                 </div>
                             </div>
 
