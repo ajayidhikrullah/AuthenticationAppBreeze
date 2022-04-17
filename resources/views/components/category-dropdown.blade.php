@@ -1,4 +1,3 @@
-<div>
     <x-dropdown>
         <x-slot name="trigger"> 
             <button class="py-2 pl-3 pr-9 text-sm font-semibold inline-flex">
@@ -29,4 +28,3 @@
             @endforeach
        
     </x-dropdown>
-</div>
