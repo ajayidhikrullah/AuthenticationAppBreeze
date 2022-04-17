@@ -14,7 +14,7 @@ class PostController extends Controller
         // var_dump(request('search'));exit();
         /* SEARCH */
 
-        return view('posts', [
+        return view('posts.index', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
             // 'categories' => Category::all(),
         ]);
@@ -45,7 +45,7 @@ class PostController extends Controller
         //     'post' => Post::findOrFail($slug)
         // ]);
 
-        return view('post', [
+        return view('posts.show', [
             'post' => $post
         ]);
     }
