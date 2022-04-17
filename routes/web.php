@@ -45,7 +45,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 // get authors cateroy post only
 Route::get('authors/{author:username}', function (User $author){//fetched post by author username which User
     // dd($author->post);
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts
         // 'categories' => Category::all()
     ]);
