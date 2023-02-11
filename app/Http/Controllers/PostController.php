@@ -14,9 +14,15 @@ class PostController extends Controller
         // var_dump(request('search'));exit();
         /* SEARCH */
 
+        // return Post::latest()->filter(
+        //     request(['search', 'category', 'author'])
+        // )->paginate(3);
+
         return view('posts.index', [
-            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
-            // 'categories' => Category::all(),
+            'posts' => Post::latest()->filter(
+                request(['search', 'category', 'author'])
+            )->paginate(3),
+            'categories' => Category::all(),
         ]);
         // $posts = Post::latest();
     
