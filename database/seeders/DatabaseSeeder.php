@@ -30,10 +30,6 @@ class DatabaseSeeder extends Seeder
             'user_id'=>$user->id
         ]);
 
-        // \App\Models\User::factory(10)->create();
-        // $user = User::factory()->create();
-
-
     
         //    $personal = Category::create([
     //         'name' => 'PersonalCategory_name',
