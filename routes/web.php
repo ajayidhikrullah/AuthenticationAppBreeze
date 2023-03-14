@@ -51,6 +51,8 @@ Route::get('authors/{author:username}', function (User $author){//fetched post b
     ]);
 });
 
+Route::get('register', [RegisterController::class, 'create']);
+
 
 
 /* initial Routes.
