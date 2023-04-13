@@ -13,7 +13,7 @@ class RegisterControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_register_page_shows()
     {
         $response = $this->get('/register');
 
